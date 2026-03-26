@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cxki0a25aciig"]
+
+[node name="Playerselect" type="Node2D" unique_id=719409856]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1635493525]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=1702166850]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PrisonerButton" type="Button" parent="CanvasLayer/HBoxContainer" unique_id=689881330]
+layout_mode = 2
+text = "Prisoner"
+
+[node name="GuardButton" type="Button" parent="CanvasLayer/HBoxContainer" unique_id=514454383]
+layout_mode = 2
+text = "Guard"
