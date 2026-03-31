@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ba65dx5l4pniu"]
+
+[ext_resource type="Script" uid="uid://ctbg1gqqmgs7" path="res://scripts/LetterCell.gd" id="1_4mjy6"]
+
+[node name="LetterCell" type="Button" unique_id=125716985]
+custom_minimum_size = Vector2(40, 40)
+script = ExtResource("1_4mjy6")
