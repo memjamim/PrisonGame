@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://bm0my3ys1gkwe"]
+
+[ext_resource type="Script" uid="uid://cxytcmwn8w6wk" path="res://scripts/OutcomeScreen.gd" id="1_wwepr"]
+
+[node name="OutcomeScreen" type="Control" unique_id=2108118298]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wwepr")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1176036541]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1563229775]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer" unique_id=739919445]
+layout_mode = 2
+text = "Result"
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1836458103]
+layout_mode = 2
+text = "---"
+
+[node name="Label3" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1998281672]
+layout_mode = 2
+text = "---"
+
+[node name="Label4" type="Label" parent="CenterContainer/VBoxContainer" unique_id=9261014]
+layout_mode = 2
+text = "---"
+
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer" unique_id=701304855]
+layout_mode = 2
+text = "Return to Menu"

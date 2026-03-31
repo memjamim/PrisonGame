@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://d1c5mq6jn1it5"]
+
+[ext_resource type="Script" uid="uid://bl7vjm1o165em" path="res://scripts/MainMenu.gd" id="1_yqorp"]
+
+[node name="MainMenu" type="Control" unique_id=248236567]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yqorp")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=87080170]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = -46.5
+offset_right = 68.0
+offset_bottom = 46.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1955700874]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer" unique_id=2001112285]
+layout_mode = 2
+text = "Choose Your Role"
+
+[node name="InmateButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1905083570]
+layout_mode = 2
+text = "Inmate"
+
+[node name="GuardButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1920483504]
+layout_mode = 2
+text = "Guard"
