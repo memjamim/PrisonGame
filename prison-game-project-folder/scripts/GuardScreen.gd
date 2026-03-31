@@ -15,7 +15,7 @@ func _ready() -> void:
 	back_button.pressed.connect(_on_back_pressed)
 
 func _on_submit_pressed() -> void:
-	var result := GameState.try_accept_guard_input(passphrase_input.text)
+	var result = GameState.try_accept_guard_input(passphrase_input.text)
 
 	if result["ok"]:
 		var alignment: String = result["alignment"]

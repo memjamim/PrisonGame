@@ -315,7 +315,7 @@ func _on_submit_guard_phrase_pressed() -> void:
 		status_label.text = "Enter the guard's reply passphrase."
 		return
 
-	var expected := GameState.get_guard_reply_for_alignment(GameState.chosen_alignment)
+	var expected = GameState.get_guard_reply_for_alignment(GameState.chosen_alignment)
 
 	if entered == expected:
 		GameState.guard_phrase_revealed = entered
