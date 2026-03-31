@@ -15,11 +15,11 @@ const EVIL_WORDS := [
 const GOOD_TARGET := 4
 const EVIL_TARGET := 4
 
-const INMATE_GOOD_PASSPHRASE := "SUNLIT-THREAD"
-const INMATE_EVIL_PASSPHRASE := "BLACK-KEY"
+const INMATE_GOOD_PASSPHRASE := "SUNLIGHT"
+const INMATE_EVIL_PASSPHRASE := "SHADOW"
 
-const GUARD_REPLY_FOR_GOOD := "WHITE-GATE"
-const GUARD_REPLY_FOR_EVIL := "RED-GATE"
+const GUARD_REPLY_FOR_GOOD := "KEYTURN"
+const GUARD_REPLY_FOR_EVIL := "LOCKPAST"
 
 var chosen_alignment: String = ""   # "good" or "evil"
 var inmate_phrase_revealed: String = ""

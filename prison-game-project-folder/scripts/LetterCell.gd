@@ -6,8 +6,10 @@ signal drag_released()
 
 var row: int = -1
 var col: int = -1
+
 var is_found: bool = false
 var is_selected: bool = false
+var found_alignment: String = ""   # "", "good", "evil"
 
 func setup(letter: String, p_row: int, p_col: int) -> void:
 	text = letter
@@ -31,8 +33,14 @@ func _on_mouse_entered() -> void:
 
 func refresh_visual() -> void:
 	if is_found:
-		modulate = Color(0.6, 1.0, 0.6)
+		match found_alignment:
+			"good":
+				modulate = Color(0.60, 1.00, 0.60) # green
+			"evil":
+				modulate = Color(1.00, 0.55, 0.55) # red
+			_:
+				modulate = Color(0.85, 0.85, 0.85)
 	elif is_selected:
-		modulate = Color(0.7, 0.85, 1.0)
+		modulate = Color(0.70, 0.85, 1.00) # blue while dragging
 	else:
 		modulate = Color(1, 1, 1)

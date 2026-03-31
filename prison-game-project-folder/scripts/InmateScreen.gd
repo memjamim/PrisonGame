@@ -3,8 +3,10 @@ extends Control
 const LetterCellScene := preload("res://scenes/LetterCell.tscn")
 
 @onready var puzzle_grid: GridContainer = $MarginContainer/HBoxContainer/VBoxContainer/PuzzleGrid
+
 @onready var good_words_label: Label = $MarginContainer/HBoxContainer/VBoxContainer2/GoodWordsLabel
 @onready var evil_words_label: Label = $MarginContainer/HBoxContainer/VBoxContainer2/EvilWordsLabel
+
 @onready var good_progress_text: Label = $MarginContainer/HBoxContainer/VBoxContainer2/GoodProgressText
 @onready var good_bar: ProgressBar = $MarginContainer/HBoxContainer/VBoxContainer2/GoodBar
 @onready var evil_progress_text: Label = $MarginContainer/HBoxContainer/VBoxContainer2/EvilProgressText
@@ -27,6 +29,11 @@ func _ready() -> void:
 
 	good_bar.max_value = GameState.GOOD_TARGET
 	evil_bar.max_value = GameState.EVIL_TARGET
+	good_bar.show_percentage = false
+	evil_bar.show_percentage = false
+
+	_apply_bar_styles()
+	_hide_word_lists_from_inmate()
 
 	submit_guard_phrase_button.pressed.connect(_on_submit_guard_phrase_pressed)
 	back_button.pressed.connect(_on_back_pressed)
@@ -34,6 +41,40 @@ func _ready() -> void:
 	_generate_board()
 	_build_grid()
 	_refresh_sidebar()
+
+func _apply_bar_styles() -> void:
+	var background := StyleBoxFlat.new()
+	background.bg_color = Color(0.14, 0.14, 0.14, 1.0)
+	background.corner_radius_top_left = 4
+	background.corner_radius_top_right = 4
+	background.corner_radius_bottom_left = 4
+	background.corner_radius_bottom_right = 4
+
+	var good_fill := StyleBoxFlat.new()
+	good_fill.bg_color = Color(0.25, 0.78, 0.35, 1.0)
+	good_fill.corner_radius_top_left = 4
+	good_fill.corner_radius_top_right = 4
+	good_fill.corner_radius_bottom_left = 4
+	good_fill.corner_radius_bottom_right = 4
+
+	var evil_fill := StyleBoxFlat.new()
+	evil_fill.bg_color = Color(0.85, 0.25, 0.25, 1.0)
+	evil_fill.corner_radius_top_left = 4
+	evil_fill.corner_radius_top_right = 4
+	evil_fill.corner_radius_bottom_left = 4
+	evil_fill.corner_radius_bottom_right = 4
+
+	good_bar.add_theme_stylebox_override("background", background)
+	evil_bar.add_theme_stylebox_override("background", background)
+
+	good_bar.add_theme_stylebox_override("fill", good_fill)
+	evil_bar.add_theme_stylebox_override("fill", evil_fill)
+
+func _hide_word_lists_from_inmate() -> void:
+	if is_instance_valid(good_words_label):
+		good_words_label.visible = false
+	if is_instance_valid(evil_words_label):
+		evil_words_label.visible = false
 
 func _generate_board() -> void:
 	board.clear()
@@ -203,25 +244,26 @@ func _check_selected_word() -> void:
 func _try_register_word(word: String) -> bool:
 	if word in GameState.GOOD_WORDS and not (word in GameState.found_good):
 		GameState.found_good.append(word)
-		_mark_current_path_found()
-		status_label.text = "Good word found: %s" % word
+		_mark_current_path_found("good")
+		status_label.text = "Word found."
 		_after_word_found("good")
 		return true
 
 	if word in GameState.EVIL_WORDS and not (word in GameState.found_evil):
 		GameState.found_evil.append(word)
-		_mark_current_path_found()
-		status_label.text = "Evil word found: %s" % word
+		_mark_current_path_found("evil")
+		status_label.text = "Word found."
 		_after_word_found("evil")
 		return true
 
 	return false
 
-func _mark_current_path_found() -> void:
+func _mark_current_path_found(alignment: String) -> void:
 	for pos in drag_path:
 		var cell = cells[pos.y][pos.x]
 		cell.is_found = true
 		cell.is_selected = false
+		cell.found_alignment = alignment
 		cell.refresh_visual()
 
 func _after_word_found(alignment: String) -> void:
@@ -239,9 +281,6 @@ func _after_word_found(alignment: String) -> void:
 	_refresh_sidebar()
 
 func _refresh_sidebar() -> void:
-	good_words_label.text = "Good words:\n" + ", ".join(GameState.GOOD_WORDS)
-	evil_words_label.text = "Evil words:\n" + ", ".join(GameState.EVIL_WORDS)
-
 	good_bar.value = GameState.found_good.size()
 	evil_bar.value = GameState.found_evil.size()
 
