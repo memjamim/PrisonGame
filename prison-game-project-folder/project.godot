@@ -11,13 +11,17 @@ config_version=5
 [application]
 
 config/name="PrisonGameProjectFolder"
-run/main_scene="uid://d1c5mq6jn1it5"
+run/main_scene="uid://ttp045qnp24g"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 GameState="*uid://chj12ttee3dc0"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot-neovim/plugin.cfg")
 
 [physics]
 
