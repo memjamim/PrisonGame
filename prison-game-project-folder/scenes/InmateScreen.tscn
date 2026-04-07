@@ -72,7 +72,7 @@ theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 22
 
 [node name="GoodBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/VBoxContainer2" unique_id=611838448]
-custom_minimum_size = Vector2(100, 30)
+custom_minimum_size = Vector2(520, 30)
 layout_mode = 2
 max_value = 4.0
 show_percentage = false
