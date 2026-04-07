@@ -15,7 +15,7 @@ func _ready() -> void:
 	back_button.pressed.connect(_on_back_pressed)
 
 func _on_submit_pressed() -> void:
-	var result := GameState.try_accept_guard_input(passphrase_input.text)
+	var result := GameState.try_accept_dual_guard_input(passphrase_input.text) # Use a line like this for the password handshakes for other classes
 
 	if result["ok"]:
 		var alignment: String = result["alignment"]
@@ -26,7 +26,7 @@ func _on_submit_pressed() -> void:
 			reply
 		]
 	else:
-		result_label.text = "That passphrase is not valid."
+		result_label.text = "That passphrase is not valid for this wordsearch."
 
 func _on_back_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")

@@ -269,13 +269,11 @@ func _mark_current_path_found(alignment: String) -> void:
 func _after_word_found(alignment: String) -> void:
 	if alignment == "good":
 		if GameState.found_good.size() >= GameState.GOOD_TARGET and GameState.chosen_alignment == "":
-			GameState.chosen_alignment = "good"
-			GameState.inmate_phrase_revealed = GameState.INMATE_GOOD_PASSPHRASE
+			GameState.reveal_dual_inmate_phrase("good")
 			status_label.text = "Good path chosen. Give your passphrase to the guard."
 	elif alignment == "evil":
 		if GameState.found_evil.size() >= GameState.EVIL_TARGET and GameState.chosen_alignment == "":
-			GameState.chosen_alignment = "evil"
-			GameState.inmate_phrase_revealed = GameState.INMATE_EVIL_PASSPHRASE
+			GameState.reveal_dual_inmate_phrase("evil")
 			status_label.text = "Evil path chosen. Give your passphrase to the guard."
 
 	_refresh_sidebar()
@@ -315,9 +313,7 @@ func _on_submit_guard_phrase_pressed() -> void:
 		status_label.text = "Enter the guard's reply passphrase."
 		return
 
-	var expected := GameState.get_guard_reply_for_alignment(GameState.chosen_alignment)
-
-	if entered == expected:
+	if GameState.try_confirm_dual_inmate_reply(entered):
 		GameState.guard_phrase_revealed = entered
 		get_tree().change_scene_to_file("res://scenes/OutcomeScreen.tscn")
 	else:
