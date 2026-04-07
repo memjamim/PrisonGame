@@ -34,8 +34,8 @@ text = "Choose Your Role"
 
 [node name="InmateButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1905083570]
 layout_mode = 2
-text = "Inmate"
+text = "Player 1"
 
 [node name="GuardButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1920483504]
 layout_mode = 2
-text = "Guard"
+text = "Player 2"

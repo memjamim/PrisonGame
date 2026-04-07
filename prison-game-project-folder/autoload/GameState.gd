@@ -3,11 +3,19 @@ extends Node
 const GRID_SIZE := 10
 
 const GOOD_WORDS := [
-	"HOPE", "PERSIST", "ENDURE", "WAITING", "KEEP", "PEACE", "AWAIT"
+	 "PERSIST", "ENDURE", "WAITING", "SELF"
 ]
 
 const EVIL_WORDS := [
-	"CAGED", "TRAPPED", "CORNERED", "CRUEL", "INESCAPABLE", "FOREVER", "STUCK"
+	"CAGED", "TRAPPED", "CONTROL", "OPPRESS"
+]
+
+const GOOD_WORDS_2 := [
+	"SURVIVE", "RESIST", "WILL", "EXIST"
+]
+
+const EVIL_WORDS_2 := [
+	"CORNERED", "SILENCE", "CONFINED", "MALAISE"
 ]
 
 const GOOD_TARGET := 4

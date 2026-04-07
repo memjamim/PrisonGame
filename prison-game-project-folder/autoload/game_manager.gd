@@ -20,6 +20,7 @@ func finish_level() -> void:
 	level_completed.emit()
 
 func begin_phrase_exchange() -> void:
+	print("[GameManager] begin_phrase_exchange called, emitting signal")
 	phrase_exchange_started.emit()
 
 func get_inmate_display_phrase() -> String:
