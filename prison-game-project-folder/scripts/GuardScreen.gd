@@ -42,8 +42,8 @@ const GUARD_DEFEAT: Array[String] = [
 var _reply_shown: bool = false
 
 func _ready() -> void:
-	good_words_label.text = "Good words:\n" + ", ".join(GameState.GOOD_WORDS)
-	evil_words_label.text = "Evil words:\n" + ", ".join(GameState.EVIL_WORDS)
+	good_words_label.text = ", ".join(GameState.GOOD_WORDS)
+	evil_words_label.text = ", ".join(GameState.EVIL_WORDS)
 
 	submit_button.pressed.connect(_on_submit_pressed)
 	back_button.pressed.connect(_on_back_pressed)

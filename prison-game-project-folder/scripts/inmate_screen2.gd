@@ -245,8 +245,8 @@ func _after_word_found(alignment: String) -> void:
 func _refresh_sidebar() -> void:
 	good_bar.value = GameState.found_good.size()
 	evil_bar.value = GameState.found_evil.size()
-	good_progress_text.text = "Good progress: %d / %d" % [GameState.found_good.size(), GameState.GOOD_TARGET]
-	evil_progress_text.text = "Evil progress: %d / %d" % [GameState.found_evil.size(), GameState.EVIL_TARGET]
+	good_progress_text.text = "Existential progress: %d / %d" % [GameState.found_good.size(), GameState.GOOD_TARGET]
+	evil_progress_text.text = "Defeatist progress: %d / %d" % [GameState.found_evil.size(), GameState.EVIL_TARGET]
 	if GameState.inmate_phrase_revealed == "":
 		inmate_phrase_label.text = "---"
 	else:
@@ -259,7 +259,7 @@ func _refresh_sidebar() -> void:
 func _on_submit_guard_phrase_pressed() -> void:
 	var entered := guard_phrase_input.text.strip_edges().to_upper()
 	if GameState.chosen_alignment == "":
-		status_label.text = "You must fill either the good or evil bar first."
+		status_label.text = "You must fill a bar first."
 		return
 	if entered == "":
 		status_label.text = "Enter the guard's reply passphrase."

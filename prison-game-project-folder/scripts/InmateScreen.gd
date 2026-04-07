@@ -316,12 +316,12 @@ func _refresh_sidebar() -> void:
 	good_bar.value = GameState.found_good.size()
 	evil_bar.value = GameState.found_evil.size()
 
-	good_progress_text.text = "Good progress: %d / %d" % [
+	good_progress_text.text = "Existential progress: %d / %d" % [
 		GameState.found_good.size(),
 		GameState.GOOD_TARGET
 	]
 
-	evil_progress_text.text = "Evil progress: %d / %d" % [
+	evil_progress_text.text = "Defeatist progress: %d / %d" % [
 		GameState.found_evil.size(),
 		GameState.EVIL_TARGET
 	]
@@ -340,7 +340,7 @@ func _on_submit_guard_phrase_pressed() -> void:
 	var entered := guard_phrase_input.text.strip_edges().to_upper()
 
 	if GameState.chosen_alignment == "":
-		status_label.text = "You must fill either the good or evil bar first."
+		status_label.text = "You must fill either a bar first."
 		return
 
 	if entered == "":

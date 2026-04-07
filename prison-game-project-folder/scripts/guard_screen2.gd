@@ -14,8 +14,8 @@ var _reply_shown: bool = false
 
 func _ready() -> void:
 	GameState.chosen_alignment = ""
-	good_words_label.text = "Good words:\n" + ", ".join(GameState.GOOD_WORDS_2)
-	evil_words_label.text = "Evil words:\n" + ", ".join(GameState.EVIL_WORDS_2)
+	good_words_label.text = ", ".join(GameState.GOOD_WORDS)
+	evil_words_label.text = ", ".join(GameState.EVIL_WORDS)
 	submit_button.pressed.connect(_on_submit_pressed)
 	back_button.pressed.connect(_on_back_pressed)
 

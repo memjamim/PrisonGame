@@ -18,8 +18,8 @@ const EVIL_WORDS_2 := [
 	"CORNERED", "SILENCE", "CONFINED", "MALAISE"
 ]
 
-const GOOD_TARGET := 4
-const EVIL_TARGET := 4
+const GOOD_TARGET := 3
+const EVIL_TARGET := 3
 
 enum Stage {
 	WORDSEARCH_1,
