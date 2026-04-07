@@ -21,6 +21,12 @@ const INMATE_EVIL_PASSPHRASE := "SHADOW"
 const GUARD_REPLY_FOR_GOOD := "KEYTURN"
 const GUARD_REPLY_FOR_EVIL := "LOCKPAST"
 
+# --- First Word Scramble ---
+
+const EXIT_INMATE_PHRASE := "FREEDOM?"
+
+const EXIT_GUARD_REPLY := "CONSEQUENCES"
+
 var chosen_alignment: String = ""   # "good" or "evil"
 var inmate_phrase_revealed: String = ""
 var guard_phrase_revealed: String = ""
@@ -76,3 +82,11 @@ func try_accept_guard_input(entered_phrase: String) -> Dictionary:
 		"alignment": "",
 		"reply": ""
 	}
+	
+func try_exit_guard_input(entered: String) -> String:
+	if entered.strip_edges().to_upper() == EXIT_INMATE_PHRASE:
+		return EXIT_GUARD_REPLY
+	return ""
+
+func try_exit_inmate_confirm(entered: String) -> bool:
+	return entered.strip_edges().to_upper() == EXIT_GUARD_REPLY

@@ -11,13 +11,15 @@ config_version=5
 [application]
 
 config/name="PrisonGameProjectFolder"
-run/main_scene="uid://ttp045qnp24g"
+run/main_scene="uid://d1c5mq6jn1it5"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 GameState="*uid://chj12ttee3dc0"
+GameManager="*uid://cwkyc1en7k6n1"
+ExitSequence="*uid://dsw2lqidq5wfn"
 
 [editor_plugins]
 

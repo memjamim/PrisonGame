@@ -9,7 +9,9 @@ func _ready() -> void:
 
 func _on_inmate_pressed() -> void:
 	GameState.reset_run()
+	GameManager.set_role(GameManager.Role.INMATE)
 	get_tree().change_scene_to_file("res://scenes/InmateScreen.tscn")
 
 func _on_guard_pressed() -> void:
+	GameManager.set_role(GameManager.Role.GUARD)
 	get_tree().change_scene_to_file("res://scenes/GuardScreen.tscn")

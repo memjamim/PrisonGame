@@ -8,10 +8,11 @@ const SPAWN_POINTS = [
 ]
 
 const TILE_SIZE = 16
-const INITIAL_DELAY = 0.25   # seconds before repeat kicks in
-const REPEAT_RATE   = 0.1    # seconds between repeated moves
+const INITIAL_DELAY = 0.25
+const REPEAT_RATE   = 0.1
 
 @export var walls: TileMapLayer
+@export var obstacles: TileMapLayer
 
 var _move_timer: float = 0.0
 var _initial_moved: bool = false
@@ -33,10 +34,6 @@ func _setup_camera() -> void:
 	var zoom_val = min(vp.x, vp.y) / (8.0 * 2.0 * TILE_SIZE)
 	cam.zoom = Vector2(zoom_val, zoom_val)
 
-
-func _draw() -> void:
-	draw_circle(Vector2.ZERO, 7.0, Color.CYAN)
-
 func _get_dir() -> Vector2i:
 	if Input.is_key_pressed(KEY_UP):    return Vector2i(0, -1)
 	if Input.is_key_pressed(KEY_DOWN):  return Vector2i(0, 1)
@@ -53,7 +50,6 @@ func _process(delta: float) -> void:
 		_initial_moved = false
 		return
 
-	# new direction & move immediately, reset timer
 	if dir != _last_dir:
 		_last_dir = dir
 		_move_timer = 0.0
@@ -71,7 +67,13 @@ func _process(delta: float) -> void:
 func _try_move(dir: Vector2i) -> void:
 	var target_global = global_position + Vector2(dir) * TILE_SIZE
 	var target_tile = walls.local_to_map(walls.to_local(target_global))
-	if walls.get_cell_source_id(target_tile) == -1:
-		global_position = target_global
-		queue_redraw()
-		$FogOfWar.recompute(walls.local_to_map(walls.to_local(global_position)))
+	var wall_stuck = walls.get_cell_source_id(target_tile) != -1
+	var obstacle_stuck = obstacles != null and obstacles.get_cell_source_id(target_tile) != -1
+	if wall_stuck or obstacle_stuck:
+		return
+	global_position = target_global
+	$Sprite2D.rotation = Vector2(dir).angle()
+	$FogOfWar.recompute(walls.local_to_map(walls.to_local(global_position)))
+	
+	if walls.local_to_map(walls.to_local(global_position)).y <= 4:
+		GameManager.finish_level()
