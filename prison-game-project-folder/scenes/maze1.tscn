@@ -9616,6 +9616,7 @@ shape = SubResource("CircleShape2D_uqdy2")
 debug_color = Color(0, 1, 0, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=461841433]
+texture_filter = 1
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("3_pnauf")
 

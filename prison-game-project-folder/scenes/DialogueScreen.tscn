@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://b8jqyicg0xmw5"]
 
+[ext_resource type="Script" uid="uid://cbtk6wa8af4k6" path="res://scripts/dialogue_screen.gd" id="1_equgq"]
+
 [node name="DialogueScreen" type="Node" unique_id=979076599]
+script = ExtResource("1_equgq")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=658826834]
 anchors_preset = 15
@@ -29,3 +32,13 @@ vertical_alignment = 3
 
 [node name="NavRow" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=486761686]
 layout_mode = 2
+
+[node name="BackHint" type="Label" parent="MarginContainer/VBoxContainer/NavRow" unique_id=2075687632]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="ContinueHint" type="Label" parent="MarginContainer/VBoxContainer/NavRow" unique_id=645410837]
+layout_mode = 2
+size_flags_horizontal = 8
+horizontal_alignment = 2
