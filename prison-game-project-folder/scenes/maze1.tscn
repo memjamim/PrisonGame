@@ -9633,6 +9633,7 @@ walls = NodePath("../../Walls")
 [node name="DebugLayer" type="CanvasLayer" parent="." unique_id=1634652331]
 
 [node name="TileCoordLabel" type="Label" parent="DebugLayer" unique_id=1793388479 node_paths=PackedStringArray("player", "walls")]
+visible = false
 offset_right = 40.0
 offset_bottom = 23.0
 script = ExtResource("3_uqdy2")
