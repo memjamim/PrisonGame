@@ -1,0 +1,143 @@
+[gd_scene format=3 uid="uid://lnpej27n53wk"]
+
+[ext_resource type="Script" uid="uid://bqoxuudehdj02" path="res://scripts/inmate_screen2.gd" id="1_1fu7d"]
+[ext_resource type="Texture2D" uid="uid://crukecyioyvsx" path="res://assets/paper-long.png" id="2_w1saw"]
+
+[node name="InmateScreen" type="Control" unique_id=559995917]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1fu7d")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1277313461]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="PaperLong" type="Sprite2D" parent="." unique_id=1899125736]
+position = Vector2(577, 319.5)
+scale = Vector2(0.7325, 2.37)
+texture = ExtResource("2_w1saw")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=77447011]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 45.0
+offset_top = 88.0
+offset_right = -24.0
+offset_bottom = -90.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=526194747]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1714345123]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=392482870]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 36
+text = "Inmate"
+
+[node name="PuzzleGrid" type="GridContainer" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=116172645]
+layout_mode = 2
+columns = 10
+
+[node name="HintLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1996923847]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 22
+text = "Drag across letters in a straight line to select words."
+
+[node name="BackButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=72511913]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1997476494]
+layout_mode = 2
+
+[node name="GoodWordsLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2" unique_id=93702659]
+layout_mode = 2
+
+[node name="EvilWordsLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1637559633]
+layout_mode = 2
+
+[node name="GoodProgressText" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1863729715]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 22
+
+[node name="GoodBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/VBoxContainer2" unique_id=611838448]
+custom_minimum_size = Vector2(520, 30)
+layout_mode = 2
+max_value = 4.0
+show_percentage = false
+
+[node name="EvilProgressText" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1554910057]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 22
+
+[node name="EvilBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/VBoxContainer2" unique_id=42837754]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+max_value = 4.0
+show_percentage = false
+
+[node name="InmatePhraseHeader" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1713309259]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 22
+text = "Your revealed passphrase:"
+
+[node name="InmatePhraseLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1931535996]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 22
+text = "---"
+
+[node name="GuardPhraseHeader" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1081841595]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 22
+text = "Enter the guard's reply:"
+
+[node name="GuardPhraseInput" type="LineEdit" parent="MarginContainer/HBoxContainer/VBoxContainer2" unique_id=596598814]
+layout_mode = 2
+text = "Enter guard reply passphrase"
+
+[node name="SubmitGuardPhraseButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1229466068]
+layout_mode = 2
+text = "Submit"
+
+[node name="GuardPhraseResultLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1748512824]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 22
+text = "---"
+
+[node name="StatusLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1397001881]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 22
+text = "Find words from one side to reveal a passphrase."

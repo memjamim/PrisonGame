@@ -2,6 +2,39 @@ extends Control
 
 const LetterCellScene := preload("res://scenes/LetterCell.tscn")
 
+const INMATE_EXIST: Array[String] = [
+	"I put down the pen.\nI've written quite a bit and it's gotten late.\nIt's lights out in the prison now.",
+	"Just as I slip my journal into my pocket, a guard spots me...",
+	"",
+	"This is very bad...\nI probably look incredibly suspicious.\nThe guard glares me down and orders me to hand it over.\nI reluctantly relinquish my only relief.",
+	"The guard scans the contents of my musings.\nThey pause for a moment. It feels like an eternity as I feel my life ending before me.",
+	"",
+	"\"Do you want to leave this place?\"",
+	"",
+	"I was taken aback.\nI didn't know how to respond, I didn't even figure it an option.\nWas he trying to get a confession of an escape attempt from me?",
+	"",
+	"\"Look I know you don't trust me but I also want out of here.\"\n\"I know a way, but I need your cooperation.\"",
+	"Shocked again at what I was hearing I can only mutter out...\n\"What's your plan?\"",
+	"The guard sighs in relief at my agreement to his scheme.\nThe guard shows a map he has tucked under his coat.\nA map of the prison he says, but he needs a prisoner to get to the exit.\nHe has to distract the internal systems.",
+	"The escape is now underway..."
+]
+
+const INMATE_DEFEAT: Array[String] = [
+	"I put down the pen.\nI've written quite a bit and it's gotten late.\nIt's lights out in the prison now.",
+	"Just as I was about to put my journal away, a guard spots me.\nThis is bad. I probably look incredibly suspicious right now.",
+	"The guard tells me to hand over the journal.\nI reluctantly do so.",
+	"The guard scans through the contents of what I just wrote.\nThe guard pauses for a moment.",
+	"\"Do you want to leave this place?\"",
+	"I was taken aback.\nI didn't know how to respond.\nWas he trying to get a confession of an escape attempt out of me?",
+	"\"Look I know you don't trust me but I also want out of here.\"\n\"I know a way out but I need your cooperation.\"",
+	"I was once again shocked at what I was hearing.\nI turned away from the guard.\nThis was too risky.",
+	"I also know in my heart that there is no true escape.\nEven if the guard really was willing to help, what would be the point?",
+	"\"Please you have nothing else to lose.\"",
+	"I think about that sad fact.\nThe guard is correct, I really do have nothing else to lose here.\nI reluctantly agreed to help.",
+	"The guard has a map of the prison but they need someone else to get to the exit.\nYou begin your escape.",
+]
+const GUARD_NULL: Array[String] = []
+
 @onready var puzzle_grid: GridContainer = $MarginContainer/HBoxContainer/VBoxContainer/PuzzleGrid
 
 @onready var good_words_label: Label = $MarginContainer/HBoxContainer/VBoxContainer2/GoodWordsLabel
@@ -25,6 +58,7 @@ var dragging := false
 var drag_path: Array[Vector2i] = []
 
 func _ready() -> void:
+	GameState.chosen_alignment = ""
 	puzzle_grid.columns = GameState.GRID_SIZE
 
 	good_bar.max_value = GameState.GOOD_TARGET
@@ -269,13 +303,11 @@ func _mark_current_path_found(alignment: String) -> void:
 func _after_word_found(alignment: String) -> void:
 	if alignment == "good":
 		if GameState.found_good.size() >= GameState.GOOD_TARGET and GameState.chosen_alignment == "":
-			GameState.chosen_alignment = "good"
-			GameState.inmate_phrase_revealed = GameState.INMATE_GOOD_PASSPHRASE
+			GameState.reveal_dual_inmate_phrase("good")
 			status_label.text = "Good path chosen. Give your passphrase to the guard."
 	elif alignment == "evil":
 		if GameState.found_evil.size() >= GameState.EVIL_TARGET and GameState.chosen_alignment == "":
-			GameState.chosen_alignment = "evil"
-			GameState.inmate_phrase_revealed = GameState.INMATE_EVIL_PASSPHRASE
+			GameState.reveal_dual_inmate_phrase("evil")
 			status_label.text = "Evil path chosen. Give your passphrase to the guard."
 
 	_refresh_sidebar()
@@ -284,12 +316,12 @@ func _refresh_sidebar() -> void:
 	good_bar.value = GameState.found_good.size()
 	evil_bar.value = GameState.found_evil.size()
 
-	good_progress_text.text = "Good progress: %d / %d" % [
+	good_progress_text.text = "Existential progress: %d / %d" % [
 		GameState.found_good.size(),
 		GameState.GOOD_TARGET
 	]
 
-	evil_progress_text.text = "Evil progress: %d / %d" % [
+	evil_progress_text.text = "Defeatist progress: %d / %d" % [
 		GameState.found_evil.size(),
 		GameState.EVIL_TARGET
 	]
@@ -308,18 +340,16 @@ func _on_submit_guard_phrase_pressed() -> void:
 	var entered := guard_phrase_input.text.strip_edges().to_upper()
 
 	if GameState.chosen_alignment == "":
-		status_label.text = "You must fill either the good or evil bar first."
+		status_label.text = "You must fill either a bar first."
 		return
 
 	if entered == "":
 		status_label.text = "Enter the guard's reply passphrase."
 		return
 
-	var expected := GameState.get_guard_reply_for_alignment(GameState.chosen_alignment)
-
-	if entered == expected:
+	if GameState.try_confirm_dual_inmate_reply(entered):
 		GameState.guard_phrase_revealed = entered
-		get_tree().change_scene_to_file("res://scenes/OutcomeScreen.tscn")
+		Dialogue.play_moral(INMATE_EXIST,INMATE_DEFEAT,GUARD_NULL, GUARD_NULL, func(): get_tree().change_scene_to_file("res://scenes/maze1.tscn"))
 	else:
 		status_label.text = "That guard reply does not match your chosen path."
 

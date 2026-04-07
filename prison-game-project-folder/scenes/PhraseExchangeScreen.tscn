@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://bawx7174mapg6"]
+
+[ext_resource type="Script" uid="uid://bi25h03hm0bkj" path="res://scripts/phrase_exchange_screen.gd" id="1_fliwp"]
+
+[node name="PhraseExchangeScreen" type="Control" unique_id=1403709209]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_fliwp")
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=605603409]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1368771684]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=974773302]
+layout_mode = 2
+
+[node name="PromptLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=973214610]
+layout_mode = 2
+
+[node name="RevealLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1835047295]
+visible = false
+layout_mode = 2
+
+[node name="InputField" type="LineEdit" parent="CenterContainer/VBoxContainer" unique_id=85054292]
+layout_mode = 2
+
+[node name="SubmitButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=618476990]
+layout_mode = 2
+text = "Submit"
+
+[node name="ConfirmButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=249431206]
+visible = false
+layout_mode = 2
+text = "Confirm"
+
+[node name="ErrorLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=384777540]
+visible = false
+layout_mode = 2
