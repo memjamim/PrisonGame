@@ -12,6 +12,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_467k3")
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=799306863]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
 [node name="PaperLong" type="Sprite2D" parent="." unique_id=1899125736]
 position = Vector2(577, 319.5)
 scale = Vector2(0.7325, 2.37)
@@ -54,6 +63,7 @@ theme_override_font_sizes/font_size = 22
 text = "Drag across letters in a straight line to select words."
 
 [node name="BackButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=72511913]
+visible = false
 layout_mode = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1997476494]
@@ -116,6 +126,7 @@ text = "Enter guard reply passphrase"
 
 [node name="SubmitGuardPhraseButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1229466068]
 layout_mode = 2
+text = "Enter"
 
 [node name="GuardPhraseResultLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1748512824]
 layout_mode = 2
