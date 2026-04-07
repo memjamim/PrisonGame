@@ -22,6 +22,12 @@ GameManager="*uid://cwkyc1en7k6n1"
 ExitSequence="*uid://dsw2lqidq5wfn"
 Dialogue="*uid://btihh01gbdeg7"
 
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/scale=1.67
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot-neovim/plugin.cfg")
