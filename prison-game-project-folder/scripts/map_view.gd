@@ -2,6 +2,33 @@ extends Control
 
 const MAP_TEXTURE = preload("res://assets/maze_map.png")
 
+const INMATE_NULL: Array[String] = []
+
+const GUARD_CONFINEMENT_EXIST: Array[String] = [
+	"The prisoner has finally made it to their destination.\nRight in front is our path to escape when suddenly the alarms go off.",
+	"Panic sets in. We've been found out.\nI tried to contact the prisoner. Nothing.",
+	"Soon I'm surrounded by guards.\nI'm taken away.",
+	"~THE SELF~",
+	"You are taken to a new cell, even smaller than the one you previously resided in.\nYou can easily touch both walls if you put your arms out.",
+	"You were so close to escaping. The exit was right there.\nThe cell block you're in now is solitary confinement.",
+	"It's so quiet here. Every action you take reverberates around the halls.\nYou start thinking.",
+	"Why did things not work out?\nIs there a way out of here?\nYour mind races.",
+	"On the bed lies the journal you wrote in in the previous cell.\nYou don't know how it ended up here but you're grateful.",
+	"With nothing else to do here, you began to write.",
+]
+
+const GUARD_CONFINEMENT_DEFEAT: Array[String] = [
+	"The prisoner has finally made it to their destination.\nRight in front is our path to escape when suddenly the alarms go off.",
+	"Panic sets in. We've been found out.\nI tried to contact the prisoner. Nothing.",
+	"Soon I'm surrounded by guards.\nI'm taken away.",
+	"~THE SELF~",
+	"You are taken to a new cell, even smaller than the one you previously resided in.\nYou can easily touch both walls if you put your arms out.",
+	"Why did you even think about escaping?\nYou knew it was hopeless from the start.",
+	"So why did those words spur you to action?\nIt was a hopeless argument.\nYou knew it was hopeless and tried anyway.\nLook where that got you.",
+	"You're tired.\nSo tired in fact that you don't see the journal on the bed before collapsing onto it.",
+	"You get up after realizing what you laid on top of.\nYou take the journal and begin writing.\nYou have all the time in the world to do that now.",
+]
+
 @onready var map_panel: PanelContainer   = $VBoxContainer/MapPanel
 @onready var map_image: TextureRect      = $VBoxContainer/MapPanel/ScrollContainer/MapImage
 @onready var phrase_panel: VBoxContainer = $VBoxContainer/PhrasePanel
@@ -79,4 +106,6 @@ func _on_confirm() -> void:
 	confirm_btn.disabled = true
 	reply_label.text    += "\n\n[Confirmed]"
 	GameManager.complete_sequence()
-	get_tree().change_scene_to_file("res://scenes/GuardScreen2.tscn")
+	var panels: Array[String] = GUARD_CONFINEMENT_EXIST if GameState.chosen_alignment == "good" else GUARD_CONFINEMENT_DEFEAT
+	Dialogue.play(INMATE_NULL, panels, func():
+		get_tree().change_scene_to_file("res://scenes/GuardScreen2.tscn"))

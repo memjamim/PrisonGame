@@ -20,8 +20,18 @@ const INMATE_EXIST: Array[String] = [
 ]
 
 const INMATE_DEFEAT: Array[String] = [
-	"[center]Placeholder 1[/center]",
-	"[center]Placeholder 2[/center]",
+	"I put down the pen.\nI've written quite a bit and it's gotten late.\nIt's lights out in the prison now.",
+	"Just as I was about to put my journal away, a guard spots me.\nThis is bad. I probably look incredibly suspicious right now.",
+	"The guard tells me to hand over the journal.\nI reluctantly do so.",
+	"The guard scans through the contents of what I just wrote.\nThe guard pauses for a moment.",
+	"\"Do you want to leave this place?\"",
+	"I was taken aback.\nI didn't know how to respond.\nWas he trying to get a confession of an escape attempt out of me?",
+	"\"Look I know you don't trust me but I also want out of here.\"\n\"I know a way out but I need your cooperation.\"",
+	"I was once again shocked at what I was hearing.\nI turned away from the guard.\nThis was too risky.",
+	"I also know in my heart that there is no true escape.\nEven if the guard really was willing to help, what would be the point?",
+	"\"Please you have nothing else to lose.\"",
+	"I think about that sad fact.\nThe guard is correct, I really do have nothing else to lose here.\nI reluctantly agreed to help.",
+	"The guard has a map of the prison but they need someone else to get to the exit.\nYou begin your escape.",
 ]
 const GUARD_NULL: Array[String] = []
 
@@ -48,6 +58,7 @@ var dragging := false
 var drag_path: Array[Vector2i] = []
 
 func _ready() -> void:
+	GameState.chosen_alignment = ""
 	puzzle_grid.columns = GameState.GRID_SIZE
 
 	good_bar.max_value = GameState.GOOD_TARGET

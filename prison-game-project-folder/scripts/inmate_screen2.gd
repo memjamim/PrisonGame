@@ -2,9 +2,7 @@ extends Control
 
 const LetterCellScene := preload("res://scenes/LetterCell.tscn")
 
-const INMATE_DIALOGUE: Array[String] = [
-	"[center]The final exchange is done.[/center]",
-]
+const INMATE_DIALOGUE: Array[String] = []
 const GUARD_NULL: Array[String] = []
 
 @onready var puzzle_grid: GridContainer = $MarginContainer/HBoxContainer/VBoxContainer/PuzzleGrid
@@ -27,6 +25,7 @@ var dragging := false
 var drag_path: Array[Vector2i] = []
 
 func _ready() -> void:
+	GameState.chosen_alignment = ""
 	puzzle_grid.columns = GameState.GRID_SIZE
 	good_bar.max_value = GameState.GOOD_TARGET
 	evil_bar.max_value = GameState.EVIL_TARGET

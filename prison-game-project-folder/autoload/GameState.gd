@@ -32,24 +32,24 @@ var current_stage: Stage = Stage.WORDSEARCH_1
 # wordsearch stages: good/evil
 const DUAL_STAGE_PASSWORDS := {
 	Stage.WORDSEARCH_1: {
-		"good_inmate": "TGHR67EN",
-		"evil_inmate": "XKSL199R",
-		"good_guard": "89BHE4B",
-		"evil_guard": "LPWQ4929"
+		"good_inmate": "SCRIBE",
+		"evil_inmate": "MOROSE",
+		"good_guard": "ENLIGHTENMENT",
+		"evil_guard": "GALLOWS"
 	},
 	Stage.WORDSEARCH_2: {
-		"good_inmate": "ZEIRO1WE",
-		"evil_inmate": "29KJEEW9",
-		"good_guard": "NM690WA3",
-		"evil_guard": "324AVER0"
+		"good_inmate": "TOMORROW",
+		"evil_inmate": "FORGOTTEN",
+		"good_guard": "CHERISHED",
+		"evil_guard": "ABANDON"
 	}
 }
 
 # non-wordsearch stages: one password only
 const SINGLE_STAGE_PASSWORDS := {
 	Stage.MAZE: {
-		"inmate": "GJNUM5R9",
-		"guard": "X4PL2Q7K"
+		"inmate": "FREEDOM?",
+		"guard": "ENSNARED"
 	}
 }
 

@@ -1,16 +1,19 @@
 extends Control
 
-const INMATE_GOOD_END: Array[String] = [
-	"[center]You chose mercy. The world is lighter for it.[/center]",
+const GOOD_END: Array[String] = [
+	"It's been a while since I was put into this cell.\nAs I suspected, escape from this cell is proving to be nearly impossible.",
+	"Guards constantly patrol the corridors and the cell proves to be incredibly sturdy.",
+	"Despite this, I wait.\nI hold out hoping that my situation will change one day.",
+	"I wait for another opportunity.\nUntil then I remain patient.",
+	"Until then, I keep writing in my journal.",
 ]
-const INMATE_EVIL_END: Array[String] = [
-	"[center]You chose cruelty. The walls close tighter.[/center]",
-]
-const GUARD_GOOD_END: Array[String] = [
-	"[center]You helped the inmate find hope.[/center]",
-]
-const GUARD_EVIL_END: Array[String] = [
-	"[center]You helped the inmate embrace darkness.[/center]",
+
+const EVIL_END: Array[String] = [
+	"It's been a while since I was put into this cell.\nI've lost count of the days. All I know is that I've been here for a long time.",
+	"Every day is the same.\nA guard comes and gives me food.\nI sleep.\nI wake.\nI write.",
+	"I've long since given up on getting out of here.\nThere's just no way I was getting out of this place.\nBetter to accept that now.",
+	"Why was I put in here again?\nI was sure I didn't do anything wrong.",
+	"The days continue to pass.\nI continue to write.\nThe days pass me by.",
 ]
 
 @onready var center: CenterContainer = $CenterContainer
@@ -22,8 +25,8 @@ const GUARD_EVIL_END: Array[String] = [
 func _ready() -> void:
 	center.visible = false
 	Dialogue.play_moral(
-		INMATE_GOOD_END, INMATE_EVIL_END,
-		GUARD_GOOD_END, GUARD_EVIL_END,
+		GOOD_END, EVIL_END,
+		GOOD_END, EVIL_END,
 		_show_results)
 
 func _show_results() -> void:

@@ -1,9 +1,7 @@
 extends Control
 
 const INMATE_NULL: Array[String] = []
-const GUARD_DIALOGUE: Array[String] = [
-	"[center]Final exchange complete.[/center]",
-]
+const GUARD_DIALOGUE: Array[String] = []
 
 @onready var good_words_label: Label = $MarginContainer/VBoxContainer/Label2
 @onready var evil_words_label: Label = $MarginContainer/VBoxContainer/Label3
@@ -15,6 +13,7 @@ const GUARD_DIALOGUE: Array[String] = [
 var _reply_shown: bool = false
 
 func _ready() -> void:
+	GameState.chosen_alignment = ""
 	good_words_label.text = "Good words:\n" + ", ".join(GameState.GOOD_WORDS_2)
 	evil_words_label.text = "Evil words:\n" + ", ".join(GameState.EVIL_WORDS_2)
 	submit_button.pressed.connect(_on_submit_pressed)
@@ -30,6 +29,7 @@ func _on_submit_pressed() -> void:
 	var result := GameState.try_accept_dual_guard_input(passphrase_input.text)
 	if result["ok"]:
 		_reply_shown = true
+		GameState.chosen_alignment = result["alignment"]
 		result_label.text = "Matched side: %s\nSend this back to the inmate:\n%s" % [
 			result["alignment"].capitalize(), result["reply"]]
 	else:
